@@ -1,19 +1,14 @@
 package luvdocx;
 
-import org.docx4j.jaxb.Context;
 import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
 import org.docx4j.wml.*;
 
 import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
-import static luvdocx.A.*;
 
 public class E {
-    private static final ObjectFactory $ = Context.getWmlObjectFactory();
 
     public static P w_p(Object... contents) {
-        var p = new P(); //$.createP();
+        var p = new P();
         for (var c : contents) {
             switch (c) {
                 case PPr pPr -> p.setPPr(pPr);
@@ -28,7 +23,7 @@ public class E {
     }
 
     public static R w_r(Object... contents) {
-        var r = $.createR();
+        var r = new R();
         for (var c : contents) {
             switch (c) {
                 case RPr rPr -> r.setRPr(rPr);
@@ -45,14 +40,14 @@ public class E {
     }
 
     public static Text w_t(String text) {
-        var t = $.createText();
+        var t = new Text();
         t.setValue(text);
         t.setSpace("preserve");
         return t;
     }
 
     public static Br w_br(String type) {
-        var br = $.createBr();
+        var br = new Br();
         if ("page".equals(type)) {
             br.setType(STBrType.PAGE);
         }
@@ -60,7 +55,7 @@ public class E {
     }
 
     public static PPr w_pPr(Object... props) {
-        var pPr = $.createPPr();
+        var pPr = new PPr();
         for (var prop : props) {
             switch (prop) {
                 case PPrBase.Spacing spacing -> pPr.setSpacing(spacing);
@@ -76,7 +71,7 @@ public class E {
     }
 
     public static PPrBase.Spacing w_spacing(Object... attrs) {
-        var spacing = $.createPPrBaseSpacing();
+        var spacing = new PPrBase.Spacing();
         for (var attr : attrs) {
             if (attr instanceof A(String name, String value)) {
                 switch (name) {
@@ -90,7 +85,7 @@ public class E {
     }
 
     public static CTShd w_shd(Object... attrs) {
-        var shd = $.createCTShd();
+        var shd = new CTShd();
         for (var attr : attrs) {
             if (attr instanceof A(String name, String value)) {
                 switch (name) {
@@ -103,7 +98,7 @@ public class E {
     }
 
     public static PPrBase.Ind w_ind(Object... attrs) {
-        var ind = $.createPPrBaseInd();
+        var ind = new PPrBase.Ind();
         for (var attr : attrs) {
             if (attr instanceof A(String name, String value)) {
                 switch (name) {
@@ -117,7 +112,7 @@ public class E {
     }
 
     public static PPrBase.PBdr w_pBdr(Object... borders) {
-        var pBdr = $.createPPrBasePBdr();
+        var pBdr = new PPrBase.PBdr();
         for (var b : borders) {
             if (b instanceof A(String name, String value)) {
                 var border = createBorder(value);
@@ -134,7 +129,7 @@ public class E {
     }
 
     private static CTBorder createBorder(String value) {
-        var b = $.createCTBorder();
+        var b = new CTBorder();
         // Parse color:size from value like "3B82F6:24"
         var parts = value.split(":");
         if (parts.length == 2) {
@@ -147,7 +142,7 @@ public class E {
     }
 
     public static PPrBase.PStyle w_pStyle(Object... attrs) {
-        var style = $.createPPrBasePStyle();
+        var style = new PPrBase.PStyle();
         for (var attr : attrs) {
             switch (attr) {
                 case A(var name, var value) when "val".equals(name) -> style.setVal(value);
@@ -158,7 +153,7 @@ public class E {
     }
 
     public static Jc w_jc(Object... attrs) {
-        var jc = $.createJc();
+        var jc = new Jc();
         for (var attr : attrs) {
             switch (attr) {
                 case A(var name, var value) when "val".equals(name) -> {
@@ -174,7 +169,7 @@ public class E {
     }
 
     public static RPr w_rPr(Object... props) {
-        var rPr = $.createRPr();
+        var rPr = new RPr();
         for (var prop : props) {
             switch (prop) {
                 case W_Bold b -> rPr.setB(b.value());
@@ -197,15 +192,15 @@ public class E {
     public record W_Italic(BooleanDefaultTrue value) {}
 
     public static W_Bold w_b() {
-        return new W_Bold($.createBooleanDefaultTrue());
+        return new W_Bold(new BooleanDefaultTrue());
     }
 
     public static W_Italic w_i() {
-        return new W_Italic($.createBooleanDefaultTrue());
+        return new W_Italic(new BooleanDefaultTrue());
     }
 
     public static Color w_color(Object... attrs) {
-        var c = $.createColor();
+        var c = new Color();
         for (var attr : attrs) {
             switch (attr) {
                 case A(var name, var value) when "val".equals(name) -> c.setVal(value);
@@ -217,7 +212,7 @@ public class E {
     }
 
     public static HpsMeasure w_sz(Object... attrs) {
-        var sz = $.createHpsMeasure();
+        var sz = new HpsMeasure();
         for (var attr : attrs) {
             switch (attr) {
                 case A(var name, var value) when "val".equals(name) -> sz.setVal(parseBigInt(value));
@@ -229,13 +224,13 @@ public class E {
     }
 
     public static U w_u() {
-        var u = $.createU();
+        var u = new U();
         u.setVal(UnderlineEnumeration.SINGLE);
         return u;
     }
 
     public static Highlight w_highlight(Object... attrs) {
-        var h = $.createHighlight();
+        var h = new Highlight();
         for (var attr : attrs) {
             switch (attr) {
                 case A(var name, var value) when "val".equals(name) -> h.setVal(value);
@@ -247,7 +242,7 @@ public class E {
     }
 
     public static RFonts w_rFonts(Object... attrs) {
-        var f = $.createRFonts();
+        var f = new RFonts();
         for (var attr : attrs) {
             switch (attr) {
                 case A(String name, String value) -> {
