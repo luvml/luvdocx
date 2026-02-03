@@ -2,8 +2,6 @@
 
 A fluent DSL (Domain Specific Language) wrapper around `docx4j` that makes DOCX document generation simpler, more readable, and more maintainable.
 
-> **Production-Ready Quality**: After code review, LuvDOCX demonstrates exceptional design and implementation quality. The code is 100% auditable (~300 lines), uses modern Java patterns elegantly, and solves real pain points that developers face daily with docx4j.
-
 ## What is LuvDOCX?
 
 LuvDOCX is **not** a general-purpose markup framework like luvml. Instead, it's a **practical API wrapper** around docx4j that:
