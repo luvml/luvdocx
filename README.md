@@ -495,8 +495,8 @@ public class DocumentGenerator {
 
 ```xml
 <dependency>
-    <groupId>io.github.xyz-jphil</groupId>
-    <artifactId>xyz-jphil-luvdocx</artifactId>
+    <groupId>io.github.luvml</groupId>
+    <artifactId>luvdocx</artifactId>
     <version>1.0</version>
 </dependency>
 
